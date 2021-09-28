@@ -1,9 +1,14 @@
 import { FC } from 'react';
 
+import GlobalStyle from 'styles/global';
+
 const App: FC = () => (
-  <div className="app">
-    Interval Timer
-  </div>
+  <>
+    <GlobalStyle />
+    <div className="app">
+      Interval Timer
+    </div>
+  </>
 );
 
 export default App;

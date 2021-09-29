@@ -5,13 +5,16 @@ import { ThemeProvider } from 'styled-components';
 
 import App from 'App';
 import theme from 'styles/theme';
+import { NotificationProvider } from 'contexts/notification';
 
 import reportWebVitals from 'reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <App />
+      <NotificationProvider>
+        <App />
+      </NotificationProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

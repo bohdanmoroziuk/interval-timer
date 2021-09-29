@@ -2,12 +2,15 @@ import { FC } from 'react';
 
 import GlobalStyle from 'styles/global';
 
+import { Container, Main, Sidebar } from 'App.styles';
+
 const App: FC = () => (
   <>
     <GlobalStyle />
-    <div className="app">
-      Interval Timer
-    </div>
+    <Container>
+      <Main></Main>
+      <Sidebar></Sidebar>
+    </Container>
   </>
 );
 

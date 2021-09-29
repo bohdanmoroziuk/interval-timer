@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import GlobalStyle from 'styles/global';
 
-import { SettingsForm } from 'components';
+import { SettingsForm, Timer } from 'components';
 
 import { Container, Main, Sidebar } from 'App.styles';
 
@@ -10,7 +10,9 @@ const App: FC = () => (
   <>
     <GlobalStyle />
     <Container>
-      <Main></Main>
+      <Main>
+        <Timer />
+      </Main>
       <Sidebar>
         <SettingsForm />
       </Sidebar>

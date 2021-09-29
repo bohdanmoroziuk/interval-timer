@@ -2,6 +2,8 @@ import { FC } from 'react';
 
 import GlobalStyle from 'styles/global';
 
+import { SettingsForm } from 'components';
+
 import { Container, Main, Sidebar } from 'App.styles';
 
 const App: FC = () => (
@@ -9,7 +11,9 @@ const App: FC = () => (
     <GlobalStyle />
     <Container>
       <Main></Main>
-      <Sidebar></Sidebar>
+      <Sidebar>
+        <SettingsForm />
+      </Sidebar>
     </Container>
   </>
 );

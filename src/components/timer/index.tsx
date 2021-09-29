@@ -8,13 +8,17 @@ import {
   ControlButton
 } from 'components/timer/styles';
 
-const Timer: FC = () => {
+export interface TimerProps {
+  onStart: () => void;
+}
+
+const Timer: FC<TimerProps> = ({ onStart }) => {
   return (
     <Circle>
       <Time>03:00</Time>
       <Round>Round 1/12</Round>
       <Controls>
-        <ControlButton>
+        <ControlButton onClick={onStart}>
           Start
         </ControlButton>
         <ControlButton>

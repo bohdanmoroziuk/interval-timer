@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+export interface ControlButtonProps {
+  variant?: 'primary' | 'secondary';
+}
 
 export const Circle = styled.div`
   width: 40vw;
@@ -29,7 +33,7 @@ export const Controls = styled.div`
   flex-direction: column;
 `;
 
-export const ControlButton = styled.button`
+export const ControlButton = styled.button<ControlButtonProps>`
   text-transform: uppercase;
   padding: 1rem 5rem;
   background-color: transparent;
@@ -47,4 +51,15 @@ export const ControlButton = styled.button`
     background-color: #00cf9b;
     color: #fff;
   }
+
+  ${({ variant = 'primary' }) => (
+    variant === 'secondary' && css`
+      border-color: #fff;
+      color: #fff;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+      }
+    `
+  )}
 `;

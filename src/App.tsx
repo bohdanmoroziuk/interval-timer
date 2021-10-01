@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, useCallback } from 'react';
+import { FC, useState, useEffect, useCallback, useRef } from 'react';
 
 import GlobalStyle from 'styles/global';
 import { useNotification } from 'contexts/notification';
@@ -21,6 +21,8 @@ const App: FC = () => {
   const [milliseconds, setMilliseconds] = useState(initial);
   const [isStarted, setIsStarted] = useState(false);
 
+  const timer = useRef<any>(null);
+
   const { addMessage } = useNotification();
 
   const time = useClockify(milliseconds);
@@ -31,30 +33,29 @@ const App: FC = () => {
     playAudio();
   }, [addMessage]);
 
-  const endTimer = useCallback(() => {
+  const stopTimer = useCallback(() => {
     setIsStarted(false);
+    setMilliseconds(initial);
     addMessage('Countdown ended');
     playAudio();
-  }, [addMessage]);
+    clearInterval(timer.current);
+  }, [addMessage, initial]);
 
   useEffect(() => {
     if (isStarted) {
-      const timer = setInterval(() => {
+      timer.current = setInterval(() => {
         if (milliseconds > 0) {
           setMilliseconds((milliseconds) => milliseconds - ONE_SECOND);
 
           if (milliseconds === ONE_SECOND) {
-            setMilliseconds(initial);
-            endTimer();
+            stopTimer();
           }
-        } else {
-          clearInterval(timer);
         }
       }, ONE_SECOND);
   
-      return () => clearInterval(timer);
+      return () => clearInterval(timer.current);
     }
-  }, [milliseconds, isStarted, endTimer, initial]);
+  }, [milliseconds, isStarted, stopTimer, initial]);
 
   return (
     <>
@@ -64,6 +65,7 @@ const App: FC = () => {
         <Main>
           <Timer
             onStart={startTimer}
+            onStop={stopTimer}
             time={time}
           />
         </Main>

@@ -11,9 +11,10 @@ import {
 export interface TimerProps {
   time: string;
   onStart: () => void;
+  onStop: () => void;
 }
 
-const Timer: FC<TimerProps> = ({ time, onStart }) => {
+const Timer: FC<TimerProps> = ({ time, onStart, onStop }) => {
   return (
     <Circle>
       <Time>{time}</Time>
@@ -22,8 +23,8 @@ const Timer: FC<TimerProps> = ({ time, onStart }) => {
         <ControlButton onClick={onStart}>
           Start
         </ControlButton>
-        <ControlButton>
-          Reset
+        <ControlButton onClick={onStop} variant="secondary">
+          Stop
         </ControlButton>
       </Controls>
     </Circle>

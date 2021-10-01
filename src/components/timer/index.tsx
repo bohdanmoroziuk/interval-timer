@@ -9,13 +9,14 @@ import {
 } from 'components/timer/styles';
 
 export interface TimerProps {
+  time: string;
   onStart: () => void;
 }
 
-const Timer: FC<TimerProps> = ({ onStart }) => {
+const Timer: FC<TimerProps> = ({ time, onStart }) => {
   return (
     <Circle>
-      <Time>03:00</Time>
+      <Time>{time}</Time>
       <Round>Round 1/12</Round>
       <Controls>
         <ControlButton onClick={onStart}>
